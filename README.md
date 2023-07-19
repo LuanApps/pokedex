@@ -7,7 +7,7 @@ This project utilizes the following libraries:
 - Retrofit: Used for making API calls to an HTTP web service.
 - Moshi: Handles the deserialization of the returned JSON into Kotlin data objects.
 - Glide: Utilized for loading and caching images by URL.
-- Room: Enables local database storage for seamless user experience.
+- Room: Enables local database storage.
 
 ## Jetpack Library Components
 
@@ -17,7 +17,7 @@ The app implements various Jetpack library components, enhancing its functionali
 - LiveData: Allows for reactive programming, updating the UI whenever data changes.
 - Data Binding: Simplifies UI components' interaction with the data, enhancing code readability.
 - Navigation: Facilitates in-app navigation between different fragments and activities.
-- RecyclerView: Efficiently displays lists of Pokemon, optimizing performance.
+- RecyclerView: Makes it easy and efficient to display large datasets.
 - MotionLayout: Adds engaging animations to improve user experience.
 
 ## App Usage Demonstration
