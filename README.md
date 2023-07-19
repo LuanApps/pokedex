@@ -28,18 +28,17 @@ Below is an accelerated video demonstrating how to use the Pokedex app:
 
 Please note that Pokemon is a trademark of Nintendo Company.
 
-<<<<<<< HEAD
 **Disclaimer:** This app and its content are purely for educational purposes and are not affiliated with or endorsed by Nintendo Company or the Pokemon franchise.
 
-## Pokedex App Design Document
+# Pokedex App Design Document
 
-# Introduction
+## Introduction
 The Pokedex App is a fun game that allows users to explore and discover various Pokémon species. Users can interact with the app by attempting to guess the correct Pokémon based on a dark silhouette. If the user guesses correctly, they can catch the Pokémon and view its details. The app follows the MVVM architecture and utilizes Retrofit and Moshi to fetch Pokémon data from the PokeAPI and Room for local data storage.
 
-# Pokemon Class
+## Pokemon Class
 The Pokemon class is a data class representing individual Pokémon entities. It holds essential information about a Pokémon, including its ID, base experience, height, name, weight, images (frontDefault and frontShiny), base stats (HP, Attack, Defense, Special Attack, Special Defense, and Speed), and types.
 
-# Gameplay Flow
+## Gameplay Flow
 
 1. Main Fragment
 The user opens the app and lands on the MainFragment.
@@ -60,15 +59,12 @@ The Pokemon details fragment shows the Pokémon name, a image, a switching butto
 5. Motion Layout
 Whenever the user switches between fragments, a Motion Layout is used to provide smooth transitions and a visually appealing experience.
 
-# Architecture and Navigation
+## Architecture and Navigation
+
 The app follows the MVVM architecture for clean separation of concerns and better maintainability.
 Navigation between fragments is implemented using the Navigation component to navigate between activities and pass bundle data between them.
 
-# Data Fetching and Storage
+## Data Fetching and Storage
+
 Retrofit and Moshi are used to fetch Pokémon data from the PokeAPI to show the silhouette and options in the "Search Pokemon" fragment.
 Room is used for local data storage to save the Pokémon data after catching them.
-||||||| 1bafbb4
-**Disclaimer:** This app and its content are purely for educational purposes and are not affiliated with or endorsed by Nintendo Company or the Pokemon franchise.
-=======
-**Disclaimer:** This app and its content are purely for educational purposes and are not affiliated with or endorsed by Nintendo Company or the Pokemon franchise.
->>>>>>> e11324c6fded72d46f87749488749cc50c501b8f
