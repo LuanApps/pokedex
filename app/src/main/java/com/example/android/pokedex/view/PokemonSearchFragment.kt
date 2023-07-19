@@ -35,7 +35,7 @@ class PokemonSearchFragment : Fragment() {
 
     private lateinit var pokemonSearchViewModel: PokemonSearchViewModel
     private lateinit var binding: FragmentPokemonSearchBinding
-    private lateinit var repository: PokemonLocalRepository
+    private var currentPokemon: Pokemon? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,11 +43,17 @@ class PokemonSearchFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pokemon_search, container, false)
-        pokemonSearchViewModel = ViewModelProvider(this)[PokemonSearchViewModel::class.java]
+        pokemonSearchViewModel = ViewModelProvider(this).get(PokemonSearchViewModel::class.java)
 
-        repository = PokemonLocalRepository(PokemonDatabase.getInstance(requireContext()).pokemonDatabaseDao)
+        pokemonSearchViewModel.viewModelScope.launch {
+            pokemonSearchViewModel.fetchPokemon()
 
-        setupView()
+            pokemonSearchViewModel.pokemon.observe(viewLifecycleOwner) { pokemon ->
+                pokemon?.let {
+                    setupView(pokemon)
+                }
+            }
+        }
 
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true /* enabled by default */) {
@@ -56,104 +62,107 @@ class PokemonSearchFragment : Fragment() {
                 }
             }
 
-
         requireActivity().onBackPressedDispatcher.addCallback(this, callback);
+
+        if (savedInstanceState != null) {
+            // If the fragment was restored, retrieve the currentPokemon from the saved state
+            currentPokemon = savedInstanceState.getParcelable(KEY_CURRENT_POKEMON)
+            setupView(currentPokemon)
+        }
 
         return binding.root
     }
 
-    private fun setupView(){
-        with(binding){
-            pokemonSearchViewModel.viewModelScope.launch {
-                pokemonSearchViewModel.fetchPokemon()
 
-                pokemonSearchViewModel.pokemon.observe(viewLifecycleOwner) { pokemon ->
-                    pokemon?.let {
-                        //Get image from pokemon
-                        val frontDefault: String =
-                            pokemonSearchViewModel.pokemon.value?.frontDefault ?: ""
-                        loadPokemonImageWithBlack(imageView, frontDefault)
-                        //get the pokemon name and three other names
-                        val rightAnswer = pokemonSearchViewModel.pokemon.value!!.name
-                        val wrongAnswer1 = pokemonSearchViewModel.getRandomPokemonName()
-                        val wrongAnswer2 = pokemonSearchViewModel.getRandomPokemonName()
-                        val wrongAnswer3 = pokemonSearchViewModel.getRandomPokemonName()
-                        //Put the answers randomly
-                        val options =
-                            listOf(rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3).shuffled()
-                        optionButton1.text = options[0]
-                        optionButton2.text = options[1]
-                        optionButton3.text = options[2]
-                        optionButton4.text = options[3]
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save the currentPokemon to the bundle when the fragment is about to be destroyed
+        outState.putParcelable(KEY_CURRENT_POKEMON, currentPokemon)
+    }
 
-                        optionButton1.setOnClickListener {
-                            checkAnswer(
-                                optionButton1,
-                                captureButton,
-                                imageView,
-                                rightAnswer,
-                                frontDefault
-                            )
-                            disableButtons(optionButton2, optionButton3, optionButton4)
-                        }
+    private fun setupView(pokemon: Pokemon?){
+        with(binding) {
+            //Get image from pokemon
+            val frontDefault: String =
+                pokemonSearchViewModel.pokemon.value?.frontDefault ?: ""
+            loadPokemonImageWithBlack(imageView, frontDefault)
+            //get the pokemon name and three other names
+            val rightAnswer = pokemonSearchViewModel.pokemon.value!!.name
+            val wrongAnswer1 = pokemonSearchViewModel.getRandomPokemonName()
+            val wrongAnswer2 = pokemonSearchViewModel.getRandomPokemonName()
+            val wrongAnswer3 = pokemonSearchViewModel.getRandomPokemonName()
+            //Put the answers randomly
+            val options =
+                listOf(rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3).shuffled()
+            optionButton1.text = options[0]
+            optionButton2.text = options[1]
+            optionButton3.text = options[2]
+            optionButton4.text = options[3]
 
-                        optionButton2.setOnClickListener {
-                            checkAnswer(
-                                optionButton2,
-                                captureButton,
-                                imageView,
-                                rightAnswer,
-                                frontDefault
-                            )
-                            disableButtons(optionButton1, optionButton3, optionButton4)
-                        }
+            optionButton1.setOnClickListener {
+                checkAnswer(
+                    optionButton1,
+                    captureButton,
+                    imageView,
+                    rightAnswer,
+                    frontDefault
+                )
+                disableButtons(optionButton2, optionButton3, optionButton4)
+            }
 
-                        optionButton3.setOnClickListener {
-                            checkAnswer(
-                                optionButton3,
-                                captureButton,
-                                imageView,
-                                rightAnswer,
-                                frontDefault
-                            )
-                            disableButtons(optionButton1, optionButton2, optionButton4)
-                        }
+            optionButton2.setOnClickListener {
+                checkAnswer(
+                    optionButton2,
+                    captureButton,
+                    imageView,
+                    rightAnswer,
+                    frontDefault
+                )
+                disableButtons(optionButton1, optionButton3, optionButton4)
+            }
 
-                        optionButton4.setOnClickListener {
-                            checkAnswer(
-                                optionButton4,
-                                captureButton,
-                                imageView,
-                                rightAnswer,
-                                frontDefault
-                            )
-                            disableButtons(optionButton1, optionButton2, optionButton3)
-                        }
+            optionButton3.setOnClickListener {
+                checkAnswer(
+                    optionButton3,
+                    captureButton,
+                    imageView,
+                    rightAnswer,
+                    frontDefault
+                )
+                disableButtons(optionButton1, optionButton2, optionButton4)
+            }
 
-                        captureButton.setOnClickListener{
-                            lifecycleScope.launch {
-                                withContext(Dispatchers.IO) {
-                                    val result = savePokemon(pokemon)
-                                    if (result) {
-                                        Log.i("repository", "Pokemon ${pokemon.name} saved successfully!")
-                                        val pokedexSize = repository.getAllPokemons().size
-                                        if(pokedexSize == 1){
-                                            sendNotification(requireContext(), pokemon)
-                                        }
-                                        navigateBack()
-                                    }
-                                    else{
-                                        Log.i("repository", "Fail to save Pokemon!")
-                                    }
-                                }
+            optionButton4.setOnClickListener {
+                checkAnswer(
+                    optionButton4,
+                    captureButton,
+                    imageView,
+                    rightAnswer,
+                    frontDefault
+                )
+                disableButtons(optionButton1, optionButton2, optionButton3)
+            }
+
+            captureButton.setOnClickListener {
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        val result = pokemonSearchViewModel.savePokemon(pokemon)
+                        if (result) {
+                            Log.i("repository", "Pokemon ${pokemon?.name} saved successfully!")
+                            val pokedexSize = pokemonSearchViewModel.getPokedexSize()
+                            if (pokedexSize == 1) {
+                                sendNotification(requireContext(), pokemon!!)
                             }
+                            navigateBack()
+                        } else {
+                            Log.i("repository", "Fail to save Pokemon!")
                         }
-
-                        //End buttons click listeners
-
                     }
                 }
             }
+
+            //End buttons click listeners
+
         }
     }
 
@@ -203,13 +212,7 @@ class PokemonSearchFragment : Fragment() {
             .into(image)
     }
 
-    private suspend fun savePokemon(pokemon: Pokemon): Boolean {
-        return try {
-            repository.savePokemon(pokemon)
-            true
-        } catch (e: Exception) {
-            e.printStackTrace()
-            false
-        }
+    companion object {
+        private const val KEY_CURRENT_POKEMON = "current_pokemon"
     }
 }

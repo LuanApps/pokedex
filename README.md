@@ -40,24 +40,33 @@ The Pokemon class is a data class representing individual Pokémon entities. It 
 
 ## Gameplay Flow
 
-1. Main Fragment
-The user opens the app and lands on the MainFragment.
-The MainFragment displays a list of caught Pokémon names and a "Search Pokemon" button.
-When the user clicks the "Search Pokemon" button, they navigate to the SearchPokemonFragment.
-When the user clicks on a Pokémon in the list, they can view the Pokémon details.
-2. Search Pokemon Fragment
-The SearchPokemonFragment displays a dark silhouette of a Pokémon and four options containing Pokémon names.
-The user clicks on one of the options to make a guess.
-If the guess is correct, the chosen option turns green, and the user can catch the Pokémon.
-If the guess is incorrect, the user can try again.
-3. Catching Pokemon
-When the user catches a Pokémon, its data is saved locally using Room for offline access.
-If it's the first Pokémon caught, a notification with a congratulatory message and the Pokémon's name is shown.
-If the user clicks on the notification, they navigate to the Pokemon details fragment showing the caught Pokémon data.
-4. Pokemon Details Fragment
-The Pokemon details fragment shows the Pokémon name, a image, a switching button to change the image to the shiny Pokémon image, and other Pokémon data.
-5. Motion Layout
-Whenever the user switches between fragments, a Motion Layout is used to provide smooth transitions and a visually appealing experience.
+### Main Fragment
+
+- The user opens the app and lands on the MainFragment.
+- The MainFragment displays a list of caught Pokémon names and a "Search Pokemon" button.
+- When the user clicks the "Search Pokemon" button, they navigate to the SearchPokemonFragment.
+- When the user clicks on a Pokémon in the list, they can view the Pokémon details.
+
+### Search Pokemon Fragment
+
+- The SearchPokemonFragment displays a dark silhouette of a Pokémon and four options containing Pokémon names.
+- The user clicks on one of the options to make a guess.
+- If the guess is correct, the chosen option turns green, and the user can catch the Pokémon.
+- If the guess is incorrect, the user can try again.
+
+### Catching Pokemon
+
+- When the user catches a Pokémon, its data is saved locally using Room for offline access.
+- If it's the first Pokémon caught, a notification with a congratulatory message and the Pokémon's name is shown.
+- If the user clicks on the notification, they navigate to the Pokemon details fragment showing the caught Pokémon data.
+
+### Pokemon Details Fragment
+
+- The Pokemon details fragment shows the Pokémon name, an image, a switching button to change the image to the shiny Pokémon image, and other Pokémon data.
+
+### Motion Layout
+
+- Whenever the user switches between fragments, a Motion Layout is used to provide smooth transitions and a visually appealing experience.
 
 ## Architecture and Navigation
 
