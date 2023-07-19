@@ -7,7 +7,7 @@ This project utilizes the following libraries:
 - Retrofit: Used for making API calls to an HTTP web service.
 - Moshi: Handles the deserialization of the returned JSON into Kotlin data objects.
 - Glide: Utilized for loading and caching images by URL.
-- Room: Enables local database storage for seamless user experience.
+- Room: Enables local database storage.
 
 ## Jetpack Library Components
 
@@ -17,7 +17,7 @@ The app implements various Jetpack library components, enhancing its functionali
 - LiveData: Allows for reactive programming, updating the UI whenever data changes.
 - Data Binding: Simplifies UI components' interaction with the data, enhancing code readability.
 - Navigation: Facilitates in-app navigation between different fragments and activities.
-- RecyclerView: Efficiently displays lists of Pokemon, optimizing performance.
+- RecyclerView: Makes it easy and efficient to display large datasets.
 - MotionLayout: Adds engaging animations to improve user experience.
 
 ## App Usage Demonstration
@@ -28,6 +28,7 @@ Below is an accelerated video demonstrating how to use the Pokedex app:
 
 Please note that Pokemon is a trademark of Nintendo Company.
 
+<<<<<<< HEAD
 **Disclaimer:** This app and its content are purely for educational purposes and are not affiliated with or endorsed by Nintendo Company or the Pokemon franchise.
 
 ## Pokedex App Design Document
@@ -66,3 +67,8 @@ Navigation between fragments is implemented using the Navigation component to na
 # Data Fetching and Storage
 Retrofit and Moshi are used to fetch Pokémon data from the PokeAPI to show the silhouette and options in the "Search Pokemon" fragment.
 Room is used for local data storage to save the Pokémon data after catching them.
+||||||| 1bafbb4
+**Disclaimer:** This app and its content are purely for educational purposes and are not affiliated with or endorsed by Nintendo Company or the Pokemon franchise.
+=======
+**Disclaimer:** This app and its content are purely for educational purposes and are not affiliated with or endorsed by Nintendo Company or the Pokemon franchise.
+>>>>>>> e11324c6fded72d46f87749488749cc50c501b8f
