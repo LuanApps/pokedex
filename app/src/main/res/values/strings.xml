@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Pokedex</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="who_is_this_pokemon">Who is this pokemon?</string>
+    <string name="try_again">Try Again</string>
+    <string name="capture_button">Capture Pokemon</string>
+    <string name="search_pokemons_button">Search Pokemons</string>
+    <string name="capture_pokemon_button">Capture Pokemon</string>
+    <string name="about_pokemon">ABOUT</string>
+    <string name="stats_pokemon">STATS</string>
+
+    <string name="base_experience_text">Base Experience: </string>
+    <string name="heigth_text">Height: </string>
+    <string name="weight_text">Weight: </string>
+    <string name="types_text">Types: </string>
+    <string name="pokemon_id_text">Pokedex id: </string>
+    <string name="pokemon_hp_text">HP: </string>
+    <string name="pokemon_attack_text">Attack: </string>
+    <string name="pokemon_defence_text">Defence: </string>
+    <string name="pokemon_special_attack_text">Special Attack: </string>
+    <string name="pokemon_special_defence_text">Special Defence: </string>
+    <string name="pokemon_speed_text">Speed: </string>
+
+    <string name="shiny_pokemon_switch_button">Shiny Pokemon</string>
+    <string name="notification_title">Pokemon Catched!</string>
+
+
+</resources>

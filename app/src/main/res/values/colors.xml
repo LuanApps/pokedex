@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="green">#FF008000</color>
+    <color name="red">#FFFF0000</color>
+
+    <!--Pokemon type background colors-->
+    <color name="fighting_color">#ce3f6a</color>
+    <color name="psychic_color">#f97077</color>
+    <color name="poison_color">#ab6ac8</color>
+    <color name="dragon_color">#096dc3</color>
+    <color name="ghost_color">#5269ac</color>
+    <color name="dark_color">#5a5365</color>
+    <color name="ground_color">#d97746</color>
+    <color name="fire_color">#fe9c53</color>
+    <color name="fairy_color">#ec90e7</color>
+    <color name="water_color">#4d90d6</color>
+    <color name="flying_color">#8fa8de</color>
+    <color name="normal_color">#9099a2</color>
+    <color name="rock_color">#c8b78b</color>
+    <color name="electric_color">#f4d23b</color>
+    <color name="bug_color">#8dc327</color>
+    <color name="grass_color">#64bb5c</color>
+    <color name="ice_color">#73cebf</color>
+    <color name="steel_color">#5890a1</color>
+
+    <!-- Green Material Design Colors -->
+    <color name="green_700">#0a7e07</color>
+    <color name="green_900">#0d5302</color>
+    <color name="green_400">#2baf2b</color>
+    <color name="yellow_200">#FFF59D</color>
+    <color name="yellow_700">#FFA000</color>
+
+
+</resources>
