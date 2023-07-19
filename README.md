@@ -24,7 +24,7 @@ The app implements various Jetpack library components, enhancing its functionali
 
 Below is an accelerated video demonstrating how to use the Pokedex app:
 
-![Accelerated video demonstrating the app usage](Pokedex_video.mp4)
+![Accelerated gif demonstrating the app usage](Pokedex_video.gif)
 
 Please note that Pokemon is a trademark of Nintendo Company.
 
